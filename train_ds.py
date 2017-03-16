@@ -426,6 +426,7 @@ def main(argv = None):
             parent_dir = './'
             keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
             prune_thresholds = {}
+            TRAIN = True
             for key in keys:
                 prune_thresholds[key] = 0.
 
