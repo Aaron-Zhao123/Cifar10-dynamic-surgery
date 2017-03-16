@@ -1,13 +1,7 @@
 import os
 import train
 import sys
-# os.system('python training_v3.py -p0')
-# os.system('python training_v3.py -p1')
-# os.system('python training_v3.py -p2')
-# os.system('python training_v3.py -p3')
-# os.system('python training_v3.py -p4')
-# os.system('python training_v3.py -p4')
-# os.system('python training_v3.py -p5')
+
 def compute_file_name(pcov, pfc):
     name = ''
     name += 'cov' + str(int(pcov[0] * 10))
@@ -19,12 +13,11 @@ def compute_file_name(pcov, pfc):
 
 acc_list = []
 count = 0
-pcov = [0., 40.]
-pfc = [85., 40., 0.]
+pcov = [0., 0.]
+pfc = [0., 0., 0.]
 retrain = 0
 f_name = compute_file_name(pcov, pfc)
 
-# f_name = 'pruningv00'
 # initial run
 param = [
     ('-pcov1',pcov[0]),
@@ -32,10 +25,11 @@ param = [
     ('-pfc1',pfc[0]),
     ('-pfc2',pfc[1]),
     ('-pfc3',pfc[2]),
-    ('-first_time', False),
+    ('-first_time', True),
     ('-file_name', f_name),
     ('-train', True),
-    ('-prune', False)
+    ('-prune', False),
+    ('-recover_rate', 0.8)
     ]
 # acc = train.main(param)
 param = [
@@ -205,4 +199,4 @@ print('accuracy summary: {}'.format(acc_list))
 # acc_list = [0.82349998, 0.8233, 0.82319999, 0.81870002, 0.82050002, 0.80400002, 0.74940002, 0.66060001, 0.5011]
 with open("acc_cifar.txt", "w") as f:
     for item in acc_list:
-        f.write("%s\n"%item)
+        f.write("%s %s %s\n"%item[0]%item[1]%item[2])
