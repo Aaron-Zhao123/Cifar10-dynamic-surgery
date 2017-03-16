@@ -592,6 +592,7 @@ def main(argv = None):
             prune_info(weights, 0)
             print(78*'-')
             start = time.time()
+            iter_cnt = 0
             if TRAIN == 1:
                 # for i in range(0,60000):
                 # for i in range(0,6):
