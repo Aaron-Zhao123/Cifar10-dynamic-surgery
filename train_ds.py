@@ -58,7 +58,7 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
 
 def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask):
     keys = ['cov1','cov2','fc1','fc2','fc3']
-    # mask_info(weights_mask)
+    mask_info(weights_mask)
     prev = weights_mask['fc1']
     for key in keys:
         weights_mask[key] = weights_mask[key] + (soft_weight_mask[key] * np.random.rand(*soft_weight_mask[key].shape) > 0.5)
@@ -67,6 +67,18 @@ def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask
     print(np.array_equal(prev, weights_mask['fc1']))
     mask_info(weights_mask)
     return (weights_mask, biases_mask)
+
+def mask_info(weights):
+    (non_zeros, total) = calculate_non_zero_weights(weights['cov1'])
+    print('cov1 has prunned {} percent of its weights'.format((total-non_zeros)*100/total))
+    (non_zeros, total) = calculate_non_zero_weights(weights['cov2'])
+    print('cov2 has prunned {} percent of its weights'.format((total-non_zeros)*100/total))
+    (non_zeros, total) = calculate_non_zero_weights(weights['fc1'])
+    print('fc1 has prunned {} percent of its weights'.format((total-non_zeros)*100/total))
+    (non_zeros, total) = calculate_non_zero_weights(weights['fc2'])
+    print('fc2 has prunned {} percent of its weights'.format((total-non_zeros)*100/total))
+    (non_zeros, total) = calculate_non_zero_weights(weights['fc3'])
+    print('fc3 has prunned {} percent of its weights'.format((total-non_zeros)*100/total))
 
 def initialize_variables(exist, file_name):
     NUM_CHANNELS = 3
