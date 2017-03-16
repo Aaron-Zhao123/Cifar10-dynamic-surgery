@@ -541,7 +541,7 @@ def main(argv = None):
 
         if (first_time_load):
             PREV_MODEL_EXIST = 1
-            weights, biases = initialize_variables(PREV_MODEL_EXIST 
+            weights, biases = initialize_variables(PREV_MODEL_EXIST,
                                                     weights_dir + 'weights' + file_name + '.pkl')
         else:
             PREV_MODEL_EXIST = 1
