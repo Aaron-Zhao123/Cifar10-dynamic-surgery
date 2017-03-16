@@ -129,6 +129,8 @@ def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, m
     keys_cov = ['cov1','cov2']
     keys_fc = ['fc1','fc2','fc3']
     next_threshold = {}
+    soft_weight_mask = {}
+    soft_biase_mask = {}
     for key in keys_cov:
         weight = weights[key].eval()
         biase = biases[key].eval()
