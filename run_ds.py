@@ -48,6 +48,7 @@ test_acc, _ = train_ds.main(param)
 print("first train")
 acc_list.append((pcov,pfc,test_acc))
 print('accuracy summary: {}'.format(acc_list))
+sys.exit()
 
 run = 1
 
