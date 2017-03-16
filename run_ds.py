@@ -51,6 +51,7 @@ print('accuracy summary: {}'.format(acc_list))
 # sys.exit()
 
 run = 1
+iter_cnt_acc = 0
 
 level1 = 1
 level2 = 0
