@@ -58,7 +58,7 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
 
 def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask):
     keys = ['cov1','cov2','fc1','fc2','fc3']
-    mask_info(weights_mask)
+    # mask_info(weights_mask)
     prev = weights_mask['fc1']
     for key in keys:
         weights_mask[key] = weights_mask[key] + (soft_weight_mask[key] * np.random.rand(*soft_weight_mask[key].shape) > 0.5)
