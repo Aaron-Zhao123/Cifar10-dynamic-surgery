@@ -125,7 +125,7 @@ def initialize_variables(exist, file_name):
     return (weights, biases)
 
 # prune weights but also record soft weights mask
-def prune_weights(prune_thresholds, weights, weights_mask, biases, biases_mask, mask_dir, f_name, recover_rate):
+def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, mask_dir, f_name, recover_rate):
     keys_cov = ['cov1','cov2']
     keys_fc = ['fc1','fc2','fc3']
     next_threshold = {}
