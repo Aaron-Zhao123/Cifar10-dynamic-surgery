@@ -112,7 +112,7 @@ while (run):
         ('-prune', False),
         ('-recover_rate', 0.8)
         ]
-    acc,_ = train.main(param)
+    acc,_ = train_ds.main(param)
     hist.append((pcov, pfc, acc))
     f_name = compute_file_name(pcov, pfc)
     # pcov[1] = pcov[1] + 10.
