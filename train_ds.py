@@ -436,7 +436,7 @@ def main(argv = None):
     try:
         try:
             opts = argv
-            first_time_load = True
+            first_time_load = False
             parent_dir = './'
             keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
             prune_thresholds = {}
@@ -540,7 +540,7 @@ def main(argv = None):
         training_data_list = []
 
         if (first_time_load):
-            PREV_MODEL_EXIST = 0
+            PREV_MODEL_EXIST = 1
             weights, biases = initialize_variables(PREV_MODEL_EXIST, '')
         else:
             PREV_MODEL_EXIST = 1
