@@ -31,7 +31,7 @@ param = [
     ('-prune', True),
     ('-recover_rate', 0.8)
     ]
-acc = train.main(param)
+acc = train_ds.main(param)
 param = [
     ('-pcov1',pcov[0]),
     ('-pcov2',pcov[1]),
