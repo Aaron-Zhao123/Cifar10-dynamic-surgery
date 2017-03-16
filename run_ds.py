@@ -27,11 +27,11 @@ param = [
     ('-pfc3',pfc[2]),
     ('-first_time', True),
     ('-file_name', f_name),
-    ('-train', True),
-    ('-prune', False),
+    ('-train', False),
+    ('-prune', True),
     ('-recover_rate', 0.8)
     ]
-# acc = train.main(param)
+acc = train.main(param)
 param = [
     ('-pcov1',pcov[0]),
     ('-pcov2',pcov[1]),
