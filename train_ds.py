@@ -679,6 +679,7 @@ def main(argv = None):
 
             if (PRUNE):
                 print('saving pruned model ...')
+                print(prune_thresholds)
                 f_name = compute_file_name(prune_thresholds)
                 prune_weights(  prune_thresholds,
                                 weights,
