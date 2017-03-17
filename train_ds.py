@@ -58,6 +58,7 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
 
 def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask):
     keys = ['cov1','cov2','fc1','fc2','fc3']
+    print('before recovery')
     mask_info(weights_mask)
     prev = weights_mask['fc1']
     for key in keys:
@@ -66,6 +67,8 @@ def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask
     print("test in recover weights")
     print(np.array_equal(prev, weights_mask['fc1']))
     # sys.exit()
+    print('after recovery')
+    sys.exit()
     mask_info(weights_mask)
     return (weights_mask, biases_mask)
 

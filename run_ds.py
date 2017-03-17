@@ -128,7 +128,7 @@ while (run):
         # if (level3 == 1):
             # pfc[0] = pfc[0] + 1.
             # level1 = 1
-        pfc[0] = pfc[0] + 4.
+        pfc[0] = pfc[0] + 2.
 
         iter_cnt_acc += iter_cnt
         retrain = 0
