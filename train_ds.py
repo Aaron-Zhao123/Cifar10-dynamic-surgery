@@ -612,6 +612,8 @@ def main(argv = None):
 
             print('pre train pruning info')
             prune_info(weights, 0)
+            mask_info(weights_mask)
+
             print(78*'-')
             start = time.time()
             iter_cnt = 0
@@ -666,7 +668,7 @@ def main(argv = None):
                                     x: images_test,
                                     y: labels_test,
                                     keep_prob: 1.0})
-            print("test accuracy is {}".format(test_acc))
+            # print("test accuracy in TRAINING is {}".format(test_acc))
             if (TRAIN):
                 save_pkl_model(weights, biases, weights_dir, 'weights' + file_name + '.pkl')
                 with open('t_data/'+'training_data'+file_name+'.pkl', 'wb') as f:
