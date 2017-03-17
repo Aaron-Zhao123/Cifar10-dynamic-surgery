@@ -139,6 +139,7 @@ while (run):
         iter_cnt_acc += iter_cnt
         if (retrain > 5):
             roundrobin += 1
+            retrain = 0
             if (level1 == 1):
                 pfc[0] = pfc[0] - 1.
                 pfc[1] = pfc[1] + 10.
