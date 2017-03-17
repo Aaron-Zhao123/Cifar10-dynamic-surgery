@@ -14,7 +14,7 @@ def compute_file_name(pcov, pfc):
 acc_list = []
 count = 0
 pcov = [0., 0.]
-pfc = [89., 0., 0.]
+pfc = [88., 0., 0.]
 retrain = 0
 f_name = compute_file_name(pcov, pfc)
 
@@ -42,7 +42,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', False),
-    ('-recover_rate', 0.8)
+    ('-recover_rate', 0.9)
     ]
 test_acc, _, _ = train_ds.main(param)
 print("first train")
@@ -63,7 +63,7 @@ roundrobin = 0
 working_level = level1
 hist = [(pcov, pfc, test_acc)]
 pcov = [0., 0.]
-pfc = [89., 0., 0.]
+pfc = [88., 0., 0.]
 retrain_cnt = 0
 while (run):
 # Prune
