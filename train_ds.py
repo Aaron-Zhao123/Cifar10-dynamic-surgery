@@ -594,7 +594,8 @@ def main(argv = None):
 
 
         init = tf.global_variables_initializer()
-        accuracy_list = np.zeros(50)
+        # accuracy_list = np.zeros(50)
+        accuracy_list = np.zeros(20)
         train_acc_list = []
         # Launch the graph
         print('Graph launching ..')
@@ -635,22 +636,22 @@ def main(argv = None):
                             train_acc,
                             cross_en
                         ))
-                        # accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:29]))
-                        accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:49]))
+                        accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:19]))
+                        # accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:49]))
                         # accuracy_list = np.concatenate((np.array([train_acc]),accuracy_list[0:4]))
                         if (i%(DISPLAY_FREQ*50) == 0 and i != 0 ):
                             train_acc_list.append(train_acc)
                             save_pkl_model(weights, biases, weights_dir, 'weights' + file_name + '.pkl')
                             print("saved the network")
                         # if (np.mean(train_acc) > 0.5):
-                        if (np.mean(accuracy_list) > 0.8):
+                        if (np.mean(accuracy_list) > 0.8 and train_acc > 0.82):
                             print("training accuracy is large, show the list: {}".format(accuracy_list))
                             # test_acc = sess.run(accuracy, feed_dict = {
                             #                         x: images_test,
                             #                         y: labels_test,
                             #                         keep_prob: 1.0})
-                            # accuracy_list = np.zeros(30)
-                            accuracy_list = np.zeros(50)
+                            accuracy_list = np.zeros(20)
+                            # accuracy_list = np.zeros(50)
                             early_stoping = 1
                             # print('test accuracy is {}'.format(test_acc))
                             # if (test_acc > 0.78 and first_time_load):
