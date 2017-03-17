@@ -1,5 +1,5 @@
 import os
-import train
+import train_ds
 import sys
 
 def compute_file_name(pcov, pfc):
@@ -47,7 +47,7 @@ while (run):
         ('-prune', False),
         ('-parent_dir', parent_dir)
         ]
-    acc = train.main(param)
+    acc = train_ds.main(param)
     hist.append((pcov[:], pfc[:], acc))
     print(pfc)
     print(hist)
