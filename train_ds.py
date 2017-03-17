@@ -54,6 +54,10 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
     soft_threshold = np.percentile(np.abs(weight),recover_percent*pruning_th)
     weight_mask = np.abs(weight) > threshold
     soft_weight_mask = (np.abs(weight) > soft_threshold) - weight_mask
+
+    print(79*'*')
+    print('{},{}'.format(threshold, soft_threshold))
+    # print('test mask {}'.format(np.sum(weight_mask)))
     return (weight_mask, soft_weight_mask)
 
 
@@ -147,6 +151,7 @@ def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, m
         weight_mask[key], soft_weight_mask[key] = dynamic_surgery(weight, prune_thresholds[key], recover_rate)
         biases_mask[key], soft_biase_mask[key] = dynamic_surgery(biase, prune_thresholds[key], recover_rate)
         if (key == 'fc1'):
+            print(79*'*')
             print('test soft mask {}'.format(np.sum(soft_weight_mask[key])))
 
     # print(mask_info(weight_mask))
