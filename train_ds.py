@@ -68,8 +68,8 @@ def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask
     print(np.array_equal(prev, weights_mask['fc1']))
     # sys.exit()
     print('after recovery')
-    sys.exit()
     mask_info(weights_mask)
+    sys.exit()
     return (weights_mask, biases_mask)
 
 def mask_info(weights):
