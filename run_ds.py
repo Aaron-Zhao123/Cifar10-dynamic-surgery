@@ -66,8 +66,8 @@ hist = [(pcov, pfc, test_acc)]
 pcov = [0., 0.]
 pfc = [80., 0., 0.]
 retrain_cnt = 0
-# Prune
 while (run):
+# Prune
     param = [
         ('-pcov1',pcov[0]),
         ('-pcov2',pcov[1]),
