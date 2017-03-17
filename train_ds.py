@@ -146,7 +146,7 @@ def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, m
         weight_mask[key], soft_weight_mask[key] = dynamic_surgery(weight, prune_thresholds[key], recover_rate)
         biases_mask[key], soft_biase_mask[key] = dynamic_surgery(biase, prune_thresholds[key], recover_rate)
 
-    print(mask_info(weight_mask))
+    # print(mask_info(weight_mask))
     print("training done, save a mask file at "  + mask_dir + f_name)
     with open(mask_dir + f_name, 'wb') as f:
         pickle.dump((weight_mask, biases_mask, soft_weight_mask, soft_biase_mask), f)
@@ -442,7 +442,7 @@ def main(argv = None):
         try:
             opts = argv
             first_time_load = False
-            parent_dir = './'
+            parent_dir = ''
             keys = ['cov1', 'cov2', 'fc1', 'fc2', 'fc3']
             prune_thresholds = {}
             TRAIN = True
