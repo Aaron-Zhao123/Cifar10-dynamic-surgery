@@ -511,7 +511,7 @@ def main(argv = None):
 
         if (TRAIN == True):
             weights_mask, biases_mask = recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask)
-        else:
+        if (first_time_load):
             weights_mask = {
                 'cov1': np.ones([5, 5, NUM_CHANNELS, 64]),
                 'cov2': np.ones([5, 5, 64, 64]),
