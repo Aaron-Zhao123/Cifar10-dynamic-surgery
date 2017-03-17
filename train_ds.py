@@ -484,8 +484,8 @@ def main(argv = None):
                     parent_dir = val
                 if (opt == '-recover_rate'):
                     recover_rate = val
-                print(recover_rate)
-                sys.exit()
+            print(recover_rate)
+            sys.exit()
 
             print('pruning thresholds are {}'.format(prune_thresholds))
         except getopt.error, msg:
