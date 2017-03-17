@@ -126,7 +126,7 @@ def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask
     # sys.exit()
     print('after recovery')
     mask_info(weights_mask)
-    # sys.exit()
+    sys.exit()
     return (weights_mask, biases_mask)
 
 # prune weights but also record soft weights mask
