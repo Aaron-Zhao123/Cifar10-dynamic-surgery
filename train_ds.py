@@ -500,9 +500,10 @@ def main(argv = None):
         # model_name = 'test.pkl'
         # model_name = '../tf_official_docker/tmp.pkl'
 
-
         if (TRAIN == True or PRUNE == True):
             (weights_mask,biases_mask,soft_weight_mask,soft_biase_mask) = initialize_weights_mask(first_time_load, mask_dir, 'mask'+file_name + '.pkl')
+
+        if (TRAIN == True):
             weights_mask, biases_mask = recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask)
         else:
             weights_mask = {

@@ -42,7 +42,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', False),
-    ('-recover_rate', 0.9)
+    ('-recover_rate', 0.8)
     ]
 test_acc, _ = train_ds.main(param)
 print("first train")
@@ -197,4 +197,4 @@ print('accuracy summary: {}'.format(acc_list))
 # acc_list = [0.82349998, 0.8233, 0.82319999, 0.81870002, 0.82050002, 0.80400002, 0.74940002, 0.66060001, 0.5011]
 with open("acc_cifar.txt", "w") as f:
     for item in acc_list:
-        f.write("%s %s %s\n"%item[0]%item[1]%item[2])
+        f.write("%s %s %s\n".format(item[0],item[1],item[2]))
