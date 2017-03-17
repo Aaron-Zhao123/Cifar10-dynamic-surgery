@@ -78,7 +78,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', False),
         ('-prune', True),
-        ('-recover_rate', 0.8)
+        ('-recover_rate', 0.9)
         ]
     _ = train_ds.main(param)
 
@@ -96,7 +96,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', True),
         ('-prune', False),
-        ('-recover_rate', 0.8)
+        ('-recover_rate', 0.9)
         ]
     _,iter_cnt = train_ds.main(param)
 
@@ -112,7 +112,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', False),
         ('-prune', False),
-        ('-recover_rate', 0.8)
+        ('-recover_rate', 0.9)
         ]
     acc,_ = train_ds.main(param)
     hist.append((pcov, pfc, acc))
@@ -128,7 +128,7 @@ while (run):
         # if (level3 == 1):
             # pfc[0] = pfc[0] + 1.
             # level1 = 1
-        pfc[0] = pfc[0] + 1.
+        pfc[0] = pfc[0] + 2.
 
         iter_cnt_acc += iter_cnt
         retrain = 0
