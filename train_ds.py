@@ -611,7 +611,9 @@ def main(argv = None):
                 sess.run(biases[key].assign(biases[key].eval()*biases_mask[key]))
 
             print('pre train pruning info')
+            print('weights check')
             prune_info(weights, 0)
+            print('mask check')
             mask_info(weights_mask)
 
             print(78*'-')

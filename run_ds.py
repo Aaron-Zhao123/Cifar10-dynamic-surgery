@@ -48,7 +48,6 @@ test_acc, _, _ = train_ds.main(param)
 print("first train")
 acc_list.append((pcov,pfc,test_acc))
 print('accuracy summary: {}'.format(acc_list))
-# sys.exit()
 
 run = 1
 iter_cnt_acc = 0
@@ -82,6 +81,7 @@ while (run):
         ]
     _ = train_ds.main(param)
 
+    sys.exit()
     # pruning saves the new models, masks
     f_name = compute_file_name(pcov, pfc)
 
