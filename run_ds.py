@@ -81,7 +81,7 @@ while (run):
         ]
     _ = train_ds.main(param)
 
-    sys.exit()
+    # sys.exit()
     # pruning saves the new models, masks
     f_name = compute_file_name(pcov, pfc)
 
