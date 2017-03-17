@@ -56,21 +56,6 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
     soft_weight_mask = (np.abs(weight) > soft_threshold) - weight_mask
     return (weight_mask, soft_weight_mask)
 
-def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask):
-    keys = ['cov1','cov2','fc1','fc2','fc3']
-    print('before recovery')
-    mask_info(weights_mask)
-    prev = weights_mask['fc1']
-    for key in keys:
-        weights_mask[key] = weights_mask[key] + (soft_weight_mask[key] * np.random.rand(*soft_weight_mask[key].shape) > 0.5)
-        biases_mask[key] = biases_mask[key] + (soft_biase_mask[key] * np.random.rand(*soft_biase_mask[key].shape) > 0.5)
-    print("test in recover weights")
-    print(np.array_equal(prev, weights_mask['fc1']))
-    # sys.exit()
-    print('after recovery')
-    mask_info(weights_mask)
-    # sys.exit()
-    return (weights_mask, biases_mask)
 
 def mask_info(weights):
     (non_zeros, total) = calculate_non_zero_weights(weights['cov1'])
@@ -127,6 +112,22 @@ def initialize_variables(exist, file_name):
             'fc3': tf.Variable(tf.constant(0.0, shape=[NUM_CLASSES]))
         }
     return (weights, biases)
+
+def recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask):
+    keys = ['cov1','cov2','fc1','fc2','fc3']
+    print('before recovery')
+    mask_info(weights_mask)
+    prev = weights_mask['fc1']
+    for key in keys:
+        weights_mask[key] = weights_mask[key] + (soft_weight_mask[key] * np.random.rand(*soft_weight_mask[key].shape) > 0.5)
+        biases_mask[key] = biases_mask[key] + (soft_biase_mask[key] * np.random.rand(*soft_biase_mask[key].shape) > 0.5)
+    print("test in recover weights")
+    print(np.array_equal(prev, weights_mask['fc1']))
+    # sys.exit()
+    print('after recovery')
+    mask_info(weights_mask)
+    # sys.exit()
+    return (weights_mask, biases_mask)
 
 # prune weights but also record soft weights mask
 def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, mask_dir, f_name, recover_rate):
@@ -505,8 +506,8 @@ def main(argv = None):
         # model_name = 'test.pkl'
         # model_name = '../tf_official_docker/tmp.pkl'
 
-        if (TRAIN == True or PRUNE == True):
-            (weights_mask,biases_mask,soft_weight_mask,soft_biase_mask) = initialize_weights_mask(first_time_load, mask_dir, 'mask'+file_name + '.pkl')
+        # if (TRAIN == True or PRUNE == True):
+        (weights_mask,biases_mask,soft_weight_mask,soft_biase_mask) = initialize_weights_mask(first_time_load, mask_dir, 'mask'+file_name + '.pkl')
 
         if (TRAIN == True):
             weights_mask, biases_mask = recover_weights(weights_mask, biases_mask, soft_weight_mask, soft_biase_mask)
