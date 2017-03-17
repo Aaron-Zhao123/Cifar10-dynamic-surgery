@@ -44,7 +44,7 @@ param = [
     ('-prune', False),
     ('-recover_rate', 0.8)
     ]
-test_acc, _ = train_ds.main(param)
+test_acc, _, _ = train_ds.main(param)
 print("first train")
 acc_list.append((pcov,pfc,test_acc))
 print('accuracy summary: {}'.format(acc_list))
@@ -98,7 +98,7 @@ while (run):
         ('-prune', False),
         ('-recover_rate', 0.9)
         ]
-    _,iter_cnt = train_ds.main(param)
+    _,iter_cnt,early_stoping = train_ds.main(param)
 
     # TEST
 
@@ -114,7 +114,7 @@ while (run):
         ('-prune', False),
         ('-recover_rate', 0.9)
         ]
-    acc,_ = train_ds.main(param)
+    acc,_,_ = train_ds.main(param)
     hist.append((pcov, pfc, acc))
     f_name = compute_file_name(pcov, pfc)
     # pcov[1] = pcov[1] + 10.
@@ -128,17 +128,18 @@ while (run):
         # if (level3 == 1):
             # pfc[0] = pfc[0] + 1.
             # level1 = 1
-        pfc[0] = pfc[0] + 2.
+        pfc[0] = pfc[0] + 4.
 
         iter_cnt_acc += iter_cnt
         retrain = 0
         roundrobin = 0
-        acc_list.append((pcov,pfc,acc,iter_cnt_acc))
+        acc_list.append((pcov[:],pfc[:],acc,iter_cnt_acc))
         iter_cnt_acc = 0
     else:
         retrain = retrain + 1
         iter_cnt_acc += iter_cnt
-        if (retrain > 5):
+        if (early_stoping == 0):
+            acc_list.append((pcov[:],pfc[:],acc,iter_cnt_acc))
             break
             # roundrobin += 1
             # retrain = 0

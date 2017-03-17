@@ -610,6 +610,7 @@ def main(argv = None):
             print(78*'-')
             start = time.time()
             iter_cnt = 0
+            early_stoping = 0
             if TRAIN == 1:
                 # for i in range(0,60000):
                 # for i in range(0,6):
@@ -646,6 +647,7 @@ def main(argv = None):
                             #                         keep_prob: 1.0})
                             # accuracy_list = np.zeros(30)
                             accuracy_list = np.zeros(20)
+                            early_stoping = 1
                             # print('test accuracy is {}'.format(test_acc))
                             # if (test_acc > 0.78 and first_time_load):
                             # print('Exiting the training, test accuracy is {}'.format(test_acc))
@@ -677,7 +679,7 @@ def main(argv = None):
                                 'mask' + f_name + '.pkl',
                                 recover_rate)
                 save_pkl_model(weights, biases, weights_dir, 'weights' + f_name + '.pkl')
-            return (test_acc,iter_cnt)
+            return (test_acc, iter_cnt, early_stoping)
     except Usage, err:
         print >> sys.stderr, err.msg
         print >> sys.stderr, "for help use --help"
