@@ -141,6 +141,11 @@ while (run):
         if (early_stoping == 0):
             acc_list.append((pcov[:],pfc[:],acc,iter_cnt_acc))
             break
+        elif (early_stoping == 1 and retrain < 5):
+            pass
+        elif (early_stoping ==1 and retrain > 5):
+            print('retrain timed out')
+            break
             # roundrobin += 1
             # retrain = 0
             # if (level1 == 1):
