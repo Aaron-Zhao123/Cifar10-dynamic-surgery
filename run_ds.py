@@ -14,7 +14,7 @@ def compute_file_name(pcov, pfc):
 acc_list = []
 count = 0
 pcov = [0., 0.]
-pfc = [0., 0., 0.]
+pfc = [80., 0., 0.]
 retrain = 0
 f_name = compute_file_name(pcov, pfc)
 
@@ -31,7 +31,7 @@ param = [
     ('-prune', True),
     ('-recover_rate', 0.8)
     ]
-acc = train_ds.main(param)
+# acc = train_ds.main(param)
 param = [
     ('-pcov1',pcov[0]),
     ('-pcov2',pcov[1]),
@@ -59,11 +59,12 @@ level3 = 0
 level4 = 0
 level5 = 0
 level6 = 0
+roundrobin = 0
 
 working_level = level1
 hist = [(pcov, pfc, test_acc)]
 pcov = [0., 0.]
-pfc = [10., 0., 0.]
+pfc = [81., 0., 0.]
 retrain_cnt = 0
 # Prune
 while (run):
@@ -118,16 +119,40 @@ while (run):
     f_name = compute_file_name(pcov, pfc)
     # pcov[1] = pcov[1] + 10.
     if (acc > 0.823):
-        pfc[0] = pfc[0] + 10.
+        if (level1 == 1):
+            pfc[1] = pfc[1] + 10.
+            level2 = 1
+        if (level2 == 1):
+            pcov[1] = pcov[1] + 10.
+            level3= 1
+        if (level3 == 1):
+            pfc[0] = pfc[0] + 1.
+            level1 = 1
+
         iter_cnt_acc += iter_cnt
         retrain = 0
+        roundrobin = 0
         acc_list.append((pcov,pfc,acc,iter_cnt_acc))
         iter_cnt_acc = 0
     else:
         retrain = retrain + 1
         iter_cnt_acc += iter_cnt
         if (retrain > 5):
-            break
+            roundrobin += 1
+            if (level1 == 1):
+                pfc[0] = pfc[0] - 1.
+                pfc[1] = pfc[1] + 10.
+                level2 = 1
+            if (level2 == 1):
+                pfc[1] = pfc[1] - 10.
+                pcov[1] = pcov[1] + 10.
+                level3= 1
+            if (level3 == 1):
+                pcov[1] = pcov[1] - 10.
+                pfc[0] = pfc[0] + 1.
+                level1 = 1
+            if (roundrobin > 3):
+                break
     # pcov[1] = pcov[1] + 10.
     # if (pfc[0] > 90.):
     #     run = 0
