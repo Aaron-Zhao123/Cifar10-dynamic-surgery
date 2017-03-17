@@ -577,13 +577,14 @@ def main(argv = None):
         decay_steps = int(num_batches_per_epoch * NUM_EPOCHS_PER_DECAY)
 
         # Decay the learning rate exponentially based on the number of steps.
-        lr = tf.train.exponential_decay(INITIAL_LEARNING_RATE,
-                                      global_step,
-                                      decay_steps,
-                                      LEARNING_RATE_DECAY_FACTOR,
-                                      staircase=True)
+        # lr = tf.train.exponential_decay(INITIAL_LEARNING_RATE,
+        #                               global_step,
+        #                               decay_steps,
+        #                               LEARNING_RATE_DECAY_FACTOR,
+        #                               staircase=True)
 
-        opt = tf.train.GradientDescentOptimizer(lr)
+        # opt = tf.train.GradientDescentOptimizer(lr)
+        opt = tf.train.AdamOptimizer(1e-5)
         grads = opt.compute_gradients(loss_value)
         org_grads = [(ClipIfNotNone(grad), var) for grad, var in grads]
         new_grads = mask_gradients(weights, org_grads, weights_mask, biases, biases_mask)
