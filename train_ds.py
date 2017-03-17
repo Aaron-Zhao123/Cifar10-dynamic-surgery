@@ -146,6 +146,8 @@ def prune_weights(prune_thresholds, weights, weight_mask, biases, biases_mask, m
         biase = biases[key].eval()
         weight_mask[key], soft_weight_mask[key] = dynamic_surgery(weight, prune_thresholds[key], recover_rate)
         biases_mask[key], soft_biase_mask[key] = dynamic_surgery(biase, prune_thresholds[key], recover_rate)
+        if (key == 'fc1'):
+            print('test soft mask {}'.format(np.sum(soft_weight_mask[key])))
 
     # print(mask_info(weight_mask))
     print("training done, save a mask file at "  + mask_dir + f_name)
