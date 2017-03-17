@@ -56,7 +56,7 @@ def dynamic_surgery(weight, pruning_th, recover_percent):
     soft_weight_mask = (np.abs(weight) > soft_threshold) - weight_mask
 
     print(79*'*')
-    print('recover_rate'.format(recover_percent))
+    print('recover_rate {}'.format(recover_percent))
     print('{},{}'.format(threshold, soft_threshold))
     # print('test mask {}'.format(np.sum(weight_mask)))
     return (weight_mask, soft_weight_mask)
