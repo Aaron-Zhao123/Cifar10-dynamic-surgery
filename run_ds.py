@@ -62,9 +62,10 @@ roundrobin = 0
 
 working_level = level1
 hist = [(pcov, pfc, test_acc)]
-pcov = [0., 10.]
+pcov = [0., 60.]
 pfc = [88., 0., 0.]
 retrain_cnt = 0
+
 while (run):
 # Prune
     param = [
@@ -99,9 +100,7 @@ while (run):
         ('-recover_rate', 0.1)
         ]
     _,iter_cnt,early_stoping = train_ds.main(param)
-
     # TEST
-
     param = [
         ('-pcov1',pcov[0]),
         ('-pcov2',pcov[1]),
@@ -127,8 +126,7 @@ while (run):
         # if (level3 == 1):
             # pfc[0] = pfc[0] + 1.
             # level1 = 1
-        pcov[1] = pcov[1] + 10.
-        # pfc[0] = pfc[0] + 2.
+        pfc[1] = pfc[1] + 10.
 
         iter_cnt_acc += iter_cnt
         retrain = 0
