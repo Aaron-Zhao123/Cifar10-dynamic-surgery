@@ -29,7 +29,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', True),
-    ('-recover_rate', 0.8)
+    ('-recover_rate', 0.9)
     ]
 # acc = train_ds.main(param)
 param = [
@@ -42,7 +42,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', False),
-    ('-recover_rate', 0.9)
+    ('-recover_rate', 0.99)
     ]
 test_acc, _, _ = train_ds.main(param)
 print("first train")
@@ -63,7 +63,7 @@ roundrobin = 0
 working_level = level1
 hist = [(pcov, pfc, test_acc)]
 pcov = [0., 0.]
-pfc = [84., 0., 0.]
+pfc = [86., 0., 0.]
 retrain_cnt = 0
 while (run):
 # Prune
@@ -77,7 +77,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', False),
         ('-prune', True),
-        ('-recover_rate', 0.9)
+        ('-recover_rate', 0.99)
         ]
     _ = train_ds.main(param)
 
@@ -96,7 +96,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', True),
         ('-prune', False),
-        ('-recover_rate', 0.9)
+        ('-recover_rate', 0.99)
         ]
     _,iter_cnt,early_stoping = train_ds.main(param)
 
@@ -112,7 +112,7 @@ while (run):
         ('-file_name', f_name),
         ('-train', False),
         ('-prune', False),
-        ('-recover_rate', 0.9)
+        ('-recover_rate', 0.99)
         ]
     acc,_,_ = train_ds.main(param)
     hist.append((pcov, pfc, acc))
