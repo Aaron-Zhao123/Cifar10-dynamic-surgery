@@ -29,7 +29,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', True),
-    ('-recover_rate', 0.9)
+    ('-recover_rate', 0.1)
     ]
 # acc = train_ds.main(param)
 param = [
@@ -42,7 +42,7 @@ param = [
     ('-file_name', f_name),
     ('-train', False),
     ('-prune', False),
-    ('-recover_rate', 0.99)
+    ('-recover_rate', 0.1)
     ]
 test_acc, _, _ = train_ds.main(param)
 print("first train")
