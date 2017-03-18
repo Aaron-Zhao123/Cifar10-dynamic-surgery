@@ -51,14 +51,10 @@ def _variable_on_cpu(name, shape, initializer):
 
 def dynamic_surgery(weight, pruning_th, recover_percent):
     threshold = np.percentile(np.abs(weight),pruning_th)
-    soft_threshold = np.percentile(np.abs(weight),(recover_percent*pruning_th))
+    # soft_threshold = np.percentile(np.abs(weight),(recover_percent*pruning_th))
     weight_mask = np.abs(weight) > threshold
-    if (soft_threshold != 0):
-        soft_weight_mask = (np.abs(weight) > soft_threshold) - weight_mask
-    else:
-        soft_weight_mask = (np.abs(weight) > soft_threshold) - weight_mask
-        pass
-
+    recover_counts = int(np.sum(1 - weight_mask) * recover_percent)
+    soft_weight_mask = (1 - weight_mask) * (np.random.rand(*weight.shape) > (1-recover_percent))
     print(79*'*')
     print('pruning th {} recover_rate {}'.format(pruning_th, recover_percent))
     print('{},{}'.format(threshold, soft_threshold))
