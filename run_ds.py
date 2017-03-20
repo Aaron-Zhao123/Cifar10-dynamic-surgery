@@ -14,7 +14,7 @@ def compute_file_name(pcov, pfc):
 acc_list = []
 count = 0
 pcov = [0., 60.]
-pfc = [88., 0., 0.]
+pfc = [88., 80., 10.]
 retrain = 0
 f_name = compute_file_name(pcov, pfc)
 
@@ -62,8 +62,8 @@ roundrobin = 0
 
 working_level = level1
 hist = [(pcov, pfc, test_acc)]
-pcov = [10., 60.]
-pfc = [88., 80., 0.]
+pcov = [0., 60.]
+pfc = [88., 80., 10.]
 retrain_cnt = 0
 
 while (run):
@@ -126,8 +126,8 @@ while (run):
         # if (level3 == 1):
             # pfc[0] = pfc[0] + 1.
             # level1 = 1
-        # pfc[1] = pfc[1] + 10.
-        pcov[0] = pcov[0] + 10.
+        pfc[2] = pfc[2] + 10.
+        # pcov[0] = pcov[0] + 10.
 
         iter_cnt_acc += iter_cnt
         retrain = 0
