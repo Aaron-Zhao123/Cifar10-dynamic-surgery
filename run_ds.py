@@ -14,7 +14,7 @@ def compute_file_name(pcov, pfc):
 acc_list = []
 count = 0
 pcov = [0., 60.]
-pfc = [88., 80., 10.]
+pfc = [88., 80., 0.]
 retrain = 0
 f_name = compute_file_name(pcov, pfc)
 
